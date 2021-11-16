@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField] List<waypoint> Keypath = new List<waypoint>();
@@ -25,17 +26,28 @@ public class EnemyMover : MonoBehaviour
     {
         Keypath.Clear();
         
-        GameObject[] waypoints = GameObject.FindGameObjectsWithTag("Path");
+        GameObject parent = GameObject.FindGameObjectWithTag("Path");
 
-        foreach(GameObject waypoint in waypoints)
+        foreach(Transform child in parent.transform)
         {
-            Keypath.Add(waypoint.GetComponent<waypoint>());
+            waypoint Waypoint = child.GetComponent<waypoint>();
+
+            if(Waypoint != null)
+            {
+                Keypath.Add(Waypoint);
+            }
         }
     }
 
     void ReturnToStart()
     {
         transform.position = Keypath[0].transform.position;
+    }
+
+    void FinishPath()
+    {
+        enemy.StealGold();
+        gameObject.SetActive(false);
     }
 
     IEnumerator PrintWaypointName()
@@ -55,7 +67,6 @@ public class EnemyMover : MonoBehaviour
             }
         }
 
-        enemy.StealGold();
-        gameObject.SetActive(false);
+        FinishPath();
     }
 }

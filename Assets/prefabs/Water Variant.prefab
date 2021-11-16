@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7503021596473777705
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7493556372522141636, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -2432149286581523428, guid: 188ea90cdfe6c634eb85f7a132fcebeb, type: 3}
+    - target: {fileID: 7493556372522141636, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537932770863754050, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537932770863754050, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537932770863754050, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537932770863754050, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537932770863754050, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537932770863754050, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537932770863754050, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537932770863754050, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537932770863754050, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537932770863754050, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537932770863754050, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9022684991677559288, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_Name
+      value: Water Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082881578728495642, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f5ba0aabb538ad647bd543e12865a1da, type: 3}
