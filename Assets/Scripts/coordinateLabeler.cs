@@ -9,17 +9,19 @@ public class coordinateLabeler : MonoBehaviour
 {
     [SerializeField] Color defaultColor = Color.white;
     [SerializeField] Color blockedColor = Color.gray;
+    [SerializeField] Color exploredColor = Color.yellow;
+    [SerializeField] Color pathColor = Color.blue;
 
     TextMeshPro label;
     Vector2Int coordinates = new Vector2Int();
-    waypoint Waypoint;
+    GridManager gridManager;
 
     private void Awake()
     {
+        gridManager = FindObjectOfType<GridManager>();
         label = GetComponent<TextMeshPro>();
         label.enabled = false;
 
-        Waypoint = GetComponentInParent<waypoint>();
         DisplayCurrentCoordinates();
     }
     private void Update()
@@ -44,20 +46,42 @@ public class coordinateLabeler : MonoBehaviour
 
     void SetLabelColour()
     {
-        if (Waypoint.getIsPlacable())
+        if(gridManager == null)
         {
-            label.color = defaultColor;
+            return;
+        }
+
+        Node node = gridManager.GetNode(coordinates);
+
+        if(node == null)
+        {
+            return;
+        }
+
+        if (!node.isWalkable)
+        {
+            label.color = blockedColor;
+        }
+        else if (node.isPath)
+        {
+            label.color = pathColor;
+        }
+        else if (node.isExplored)
+        {
+            label.color = exploredColor;
         }
         else
         {
-            label.color = blockedColor;
+            label.color = defaultColor;
         }
     }
 
     void DisplayCurrentCoordinates()
     {
-        coordinates.x = Mathf.RoundToInt(transform.parent.position.x / UnityEditor.EditorSnapSettings.move.x);
-        coordinates.y = Mathf.RoundToInt(transform.parent.position.z / UnityEditor.EditorSnapSettings.move.y);
+        if(gridManager == null) { return; }
+
+        coordinates.x = Mathf.RoundToInt(transform.parent.position.x / gridManager.WorldGridSize);
+        coordinates.y = Mathf.RoundToInt(transform.parent.position.z / gridManager.WorldGridSize);
 
         label.text = coordinates.x + "," + coordinates.y;
     }
