@@ -80,14 +80,14 @@ public class coordinateLabeler : MonoBehaviour
     {
         if(gridManager == null) { return; }
 
-        coordinates.x = Mathf.RoundToInt(transform.parent.position.x / gridManager.WorldGridSize);
-        coordinates.y = Mathf.RoundToInt(transform.parent.position.z / gridManager.WorldGridSize);
+        coordinates.x = Mathf.RoundToInt(transform.position.x / gridManager.WorldGridSize);
+        coordinates.y = Mathf.RoundToInt(transform.position.z / gridManager.WorldGridSize);
 
         label.text = coordinates.x + "," + coordinates.y;
     }
 
     void UpdateObjectName()
     {
-        transform.parent.name = coordinates.ToString();
+        gameObject.name = coordinates.ToString();
     }
 }

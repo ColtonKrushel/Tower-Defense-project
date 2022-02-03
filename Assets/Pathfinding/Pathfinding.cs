@@ -5,7 +5,10 @@ using UnityEngine;
 public class Pathfinding : MonoBehaviour
 {
     [SerializeField] Vector2Int startCoordinate;
+    public Vector2Int StartCoordinate { get { return startCoordinate; } }
+
     [SerializeField] Vector2Int endCoordinate;
+    public Vector2Int EndCoordinate { get { return endCoordinate; } }
 
     Node startNode;
     Node endNode;
@@ -24,15 +27,21 @@ public class Pathfinding : MonoBehaviour
         if(gridManager != null)
         {
             grid = gridManager.grid;
+            startNode = grid[startCoordinate];
+            endNode = grid[endCoordinate];
+            
         }
     }
     void Start()
     {
-        startNode = new Node(startCoordinate, true);
-        endNode = new Node(endCoordinate, true);
+        GetNewPath();
+    }
 
+    public List<Node> GetNewPath()
+    {
+        gridManager.resetNodes();
         BreadthFirstSearch();
-        buildPath();
+        return buildPath();
     }
 
     void ExploreNeighbours()
@@ -64,6 +73,12 @@ public class Pathfinding : MonoBehaviour
 
     void BreadthFirstSearch()
     {
+        frontier.Clear();
+        reached.Clear();
+
+        startNode.isWalkable = true;
+        endNode.isWalkable = true;
+
         bool isRunning = true;
 
         frontier.Enqueue(startNode);
@@ -97,5 +112,30 @@ public class Pathfinding : MonoBehaviour
 
         path.Reverse();
         return path;
+    }
+
+    public bool WillBlockPath(Vector2Int coordinates)
+    {
+        if (grid.ContainsKey(coordinates))
+        {
+            bool previousState = grid[coordinates].isWalkable;
+            
+            grid[coordinates].isWalkable = false;
+            List<Node> newPath = GetNewPath();
+            grid[coordinates].isWalkable = previousState;
+
+            if(newPath.Count <= 1)
+            {
+                GetNewPath();
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void NotifyRecievers()
+    {
+        BroadcastMessage("RecalculatePath", SendMessageOptions.DontRequireReceiver);
     }
 }

@@ -5,43 +5,38 @@ using UnityEngine;
 [RequireComponent(typeof(Enemy))]
 public class EnemyMover : MonoBehaviour
 {
-    [SerializeField] List<Tile> Keypath = new List<Tile>();
     [SerializeField] [Range(0,5)]float speed = 1f;
 
+    List<Node> Keypath = new List<Node>();
+
     Enemy enemy;
+    GridManager gridManager;
+    Pathfinding pathfinder;
+
 
     void OnEnable()
     {
-        FindPath();
+        RecalculatePath();
         ReturnToStart();
         StartCoroutine(PrintWaypointName());
     }
 
-    private void Start()
+    private void Awake()
     {
         enemy = GetComponent<Enemy>();
+        gridManager = FindObjectOfType<GridManager>();
+        pathfinder = FindObjectOfType<Pathfinding>();
     }
 
-    void FindPath()
+    void RecalculatePath()
     {
         Keypath.Clear();
-        
-        GameObject parent = GameObject.FindGameObjectWithTag("Path");
-
-        foreach(Transform child in parent.transform)
-        {
-            Tile Waypoint = child.GetComponent<Tile>();
-
-            if(Waypoint != null)
-            {
-                Keypath.Add(Waypoint);
-            }
-        }
+        Keypath = pathfinder.GetNewPath();
     }
 
     void ReturnToStart()
     {
-        transform.position = Keypath[0].transform.position;
+        transform.position = gridManager.getPositionFromCoordinates(pathfinder.StartCoordinate);
     }
 
     void FinishPath()
@@ -52,10 +47,10 @@ public class EnemyMover : MonoBehaviour
 
     IEnumerator PrintWaypointName()
     {
-        foreach(Tile waypoint in Keypath)
+        for(int i = 0; i < Keypath.Count; i++)
         {
             Vector3 startPosition = transform.position;
-            Vector3 endPosition = waypoint.transform.position;
+            Vector3 endPosition = gridManager.getPositionFromCoordinates(Keypath[i].coordinates);
             float travelPercent = 0f;
             transform.LookAt(endPosition);
 
