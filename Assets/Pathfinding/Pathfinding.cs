@@ -40,7 +40,13 @@ public class Pathfinding : MonoBehaviour
     public List<Node> GetNewPath()
     {
         gridManager.resetNodes();
-        BreadthFirstSearch();
+        BreadthFirstSearch(startCoordinate);
+        return buildPath();
+    }
+    public List<Node> GetNewPath(Vector2Int coordinates)
+    {
+        gridManager.resetNodes();
+        BreadthFirstSearch(coordinates);
         return buildPath();
     }
 
@@ -71,20 +77,20 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
-    void BreadthFirstSearch()
+    void BreadthFirstSearch(Vector2Int coordinates)
     {
-        frontier.Clear();
-        reached.Clear();
-
         startNode.isWalkable = true;
         endNode.isWalkable = true;
+
+        frontier.Clear();
+        reached.Clear();
 
         bool isRunning = true;
 
         frontier.Enqueue(startNode);
-        reached.Add(startCoordinate, startNode);
+        reached.Add(coordinates, grid[coordinates]);
 
-        while(frontier.Count > 0 && isRunning == true)
+        while(frontier.Count > 0 && isRunning)
         {
             currentSearchNode = frontier.Dequeue();
             currentSearchNode.isExplored = true;

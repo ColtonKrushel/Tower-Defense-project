@@ -31,7 +31,7 @@ public class EnemyMover : MonoBehaviour
     void RecalculatePath()
     {
         Keypath.Clear();
-        Keypath = pathfinder.GetNewPath();
+        Keypath = pathfinder.GetNewPath(gridManager.getCoordinatesFromposition(transform.position));
     }
 
     void ReturnToStart()

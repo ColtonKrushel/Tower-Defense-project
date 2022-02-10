@@ -12,26 +12,26 @@ public class Tile : MonoBehaviour
     Pathfinding pathfinder;
     Vector2Int coordinates = new Vector2Int();
 
-    private void Awake()
+    void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
         pathfinder = FindObjectOfType<Pathfinding>();
     }
 
-    private void Start()
+    void Start()
     {
         if(gridManager != null)
         {
             coordinates = gridManager.getCoordinatesFromposition(transform.position);
 
-            if (isPlacable)
+            if (!isPlacable)
             {
                 gridManager.blockNode(coordinates);
             }
         }
     }
 
-    private void OnMouseDown()
+    void OnMouseDown()
     {
         if (gridManager.GetNode(coordinates).isWalkable && !pathfinder.WillBlockPath(coordinates))
         {
