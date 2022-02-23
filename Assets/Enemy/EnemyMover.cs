@@ -16,9 +16,8 @@ public class EnemyMover : MonoBehaviour
 
     void OnEnable()
     {
-        RecalculatePath();
         ReturnToStart();
-        StartCoroutine(PrintWaypointName());
+        RecalculatePath(false);
     }
 
     private void Awake()
@@ -28,10 +27,23 @@ public class EnemyMover : MonoBehaviour
         pathfinder = FindObjectOfType<Pathfinding>();
     }
 
-    void RecalculatePath()
+    void RecalculatePath(bool resetPath)
     {
+        Vector2Int coordinates = new Vector2Int();
+
+        if (resetPath)
+        {
+            coordinates = pathfinder.StartCoordinate;
+        }
+        else
+        {
+            coordinates = gridManager.getCoordinatesFromposition(transform.position);
+        }
+
+        StopAllCoroutines();
         Keypath.Clear();
-        Keypath = pathfinder.GetNewPath(gridManager.getCoordinatesFromposition(transform.position));
+        Keypath = pathfinder.GetNewPath(coordinates);
+        StartCoroutine(PrintWaypointName());
     }
 
     void ReturnToStart()
@@ -47,7 +59,7 @@ public class EnemyMover : MonoBehaviour
 
     IEnumerator PrintWaypointName()
     {
-        for(int i = 0; i < Keypath.Count; i++)
+        for(int i = 1; i < Keypath.Count; i++)
         {
             Vector3 startPosition = transform.position;
             Vector3 endPosition = gridManager.getPositionFromCoordinates(Keypath[i].coordinates);

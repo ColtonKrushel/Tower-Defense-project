@@ -30,6 +30,7 @@ public class enemyHealth : MonoBehaviour
             gameObject.SetActive(false);
             maxHealth += difficultyRamp;
             enemy.RewardGold();
+            currentHitPoints = maxHealth;
         }
     }
 }

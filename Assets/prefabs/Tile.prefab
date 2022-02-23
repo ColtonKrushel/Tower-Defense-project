@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8518297263278489135}
   - component: {fileID: 6836531746935621477}
   - component: {fileID: 8053992251550098417}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GrassMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7569077896471100435}
   - component: {fileID: 1881816975572143320}
   - component: {fileID: 1644665963146488599}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 1194826129427841240}
   - component: {fileID: 135180249464254880}
   - component: {fileID: 2551564946690047240}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: (-1, 5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

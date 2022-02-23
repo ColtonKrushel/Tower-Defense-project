@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4bb018d1bb052438177eeee24c7f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 75
 --- !u!1 &5800250913957434869
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,7 +101,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5800250913957434869}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 7.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -925,7 +926,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1
       minScalar: 10
       maxCurve:
         serializedVersion: 2
